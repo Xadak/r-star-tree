@@ -208,7 +208,7 @@ public:
 		for decent performance.
 	*/
 	template <typename Acceptor, typename Visitor>
-	Visitor Query(const Acceptor &accept, Visitor visitor)
+	Visitor Query(const Acceptor &accept, Visitor visitor) const
 	{
 		if (m_root)
 		{	
@@ -619,11 +619,11 @@ protected:
 		Visitor &visitor;
 		
 		explicit QueryFunctor(const Acceptor &a, Visitor &v) : accept(a), visitor(v) {}
-	
-		void operator()(BoundedItem * item)
+
+		void operator()(const BoundedItem *item)
 		{
-			Node * node = static_cast<Node*>(item);
-		
+			const Node *node = static_cast<const Node *>(item);
+
 			if (visitor.ContinueVisiting && accept(node))
 			{
 				if (node->hasLeaves)
