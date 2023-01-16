@@ -208,7 +208,7 @@ public:
 		for decent performance.
 	*/
 	template <typename Acceptor, typename Visitor>
-	Visitor Query(const Acceptor &accept, Visitor visitor) const
+	Visitor& Query(const Acceptor &accept, Visitor& visitor) const
 	{
 		if (m_root)
 		{	
